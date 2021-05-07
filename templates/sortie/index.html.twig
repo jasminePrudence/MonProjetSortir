@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sortie index{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+{% endblock %}
+
+{% block body %}
+
+    <div>
+        <h4>Participant: {{ app.user.nom  }}</h4>
+        <h4>Participant: {{ "now"|date() }}</h4>
+    </div>
+
+    <div>
+        <h3> Filtrer les sorties</h3>
+        <label>campus</label>
+        <select name="Nantes" size="1">
+            <option value="nantes">Nantes</option>
+            <option value="rennes">Rennes</option>
+            <option value="angers">Angers</option>
+            <option value="niort">Niort</option>
+        </select>
+    </div>
+    <div id="searchbar">
+
+        <div class="container">
+            <form class="form-inline" action="/recherche/" method="get">
+                <fieldset>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <select id="oCategorie" name="oCategorie" class="form-control">
+                                <option selected="selected" value="0">Le nom de la sortie contient:</option>
+                                <option value="1">...</option>
+                            </select>
+                        </div>
+                        <input id="oSaisie" name="oSaisie" type="text" class="form-control" aria-label="Saisie de mots clés" required="required">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Recherche</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <h1>Sorties</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>DateHeureDebut</th>
+                <th>Duree</th>
+                <th>DateLimiteInscription</th>
+                <th>NbInscriptionsMax</th>
+                <th>InfosSortie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sortie in sorties %}
+            <tr>
+                <td>{{ sortie.id }}</td>
+                <td>{{ sortie.nom }}</td>
+                <td>{{ sortie.dateHeureDebut ? sortie.dateHeureDebut|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ sortie.duree }}</td>
+                <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ sortie.nbInscriptionsMax }}</td>
+                <td>{{ sortie.infosSortie }}</td>
+                <td>
+                    <a href="{{ path('sortie_show', {'id': sortie.id}) }}">show</a>
+                    <a href="{{ path('sortie_edit', {'id': sortie.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('sortie_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,68 @@
+<style>
+    nav ul {
+
+    }
+    nav li {
+        display: inline-block;
+        list-style-type: none;
+    }
+    .site_title {
+        writing-mode: vertical-rl;
+        text-orientation: revert;
+        color:white
+    }
+</style>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+    <span class="site_title">Sortir.com</span>
+    <a class="navbar-brand" href="{{ path('main_home') }}">
+        <img src="{{ asset('images/logo.png') }}" width="250" height="150" class="d-inline-block align-top" alt=""/>
+    </a>
+    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>-->
+    <ul style="clear:both">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_login') }}"><i class="fas fa-user"></i> Connection</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_register') }}"><i class="fas fa-user"></i> Inscription</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('main_home') }}"><i class="fas fa-user"></i> Accueil/Sorties</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('ville_index') }}">Ville</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('campus_index') }}">Campus</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('lieu_index') }}">Lieux</a>
+            </li>
+            <li class="nav-item">
+                <a class="dropdown-item" href="{{ path('utilisateur_index') }}">Profil</a>
+                {# {% if app.user.photo is not null %}
+                            <img class="img-profile rounded-circle" src="{{ asset('files/' ~ app.user.photo) }}">
+                            <i>{{ app.user.username }}</i>
+                        {% else %}
+                            <i class="fas fa-user-circle"></i> {{ app.user.username }}
+                        {% endif %} #}
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('sortie_new') }}">Evenements</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-user"></i> Gestion Utilisateurs</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="dropdown-item text-danger" href="{{ path('app_login') }}">Déconnection</a>
+            </li>
+    </ul>
+</nav>
+
